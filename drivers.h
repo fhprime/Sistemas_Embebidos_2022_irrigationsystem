@@ -5,5 +5,6 @@ void clk_config(void);
 void ADC_config(void);					
 void UART3_config(void);			
 void GPIO_config(void);	
+void TIM3_config(void);
 
 #endif /* DRIVERS_H_ */

@@ -47,3 +47,17 @@ void UART3_config(void){
 void GPIO_config(void){
 	
 }
+
+void TIM3_config(void){
+	RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+	// Freq = 1kHz (999) - Autoreload register in us (333 is 333 us)
+	TIM3->ARR = 999;
+	// Prescaler (64MHz)/(63+1) = 1 MHz
+	TIM3->PSC = 63; 
+	// The update event is selected as trigger output (TRGO)
+	TIM3->CR2 |= 0x20;
+	// Update Generation
+	TIM3->EGR |= TIM_EGR_UG;
+	// Autoreload register + Counter Enable
+	TIM3->CR1 |= TIM_CR1_ARPE | TIM_CR1_CEN;
+}

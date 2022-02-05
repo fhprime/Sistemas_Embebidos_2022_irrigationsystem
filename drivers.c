@@ -42,10 +42,27 @@ void ADC_config(void){
 }
 
 void UART3_config(void){
+	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;					//Habilito reloj a GPIOB
+	RCC->APB1ENR |= RCC_APB1ENR_USART3EN;				//Habilito reloj a USART3
+	
+	GPIOB->MODER |= (0x2<<16)| (0x2<<18);					//Configuro puerto A2 y A3 
+	GPIOB->AFR[1] |= (0x7<<0); 									//Puerto A2 TX
+	GPIOB->AFR[1] |= (0x7<<4);									//Puerto A3 RX
+	
+	USART3->BRR = 3333;         									//
+	USART3->CR1 |= USART_CR1_RE | USART_CR1_TE; //Habilito recepcion y transmision de datos
+	USART3->CR1 |= USART_CR1_UE;								//Habilito USART3
+	USART3->CR1 |= USART_CR1_RXNEIE;						//Habilito receptor de interrupciones
+	NVIC_EnableIRQ(USART3_IRQn);                //Habilito NVIC para interrupcion al USART3
 }
 
 void GPIO_config(void){
-	
+	//PA10 RELE 1
+	//PB3  RELE 2
+	//PB5  Bomba 
+	RCC->AHBENR |= RCC_AHBENR_GPIOAEN + RCC_AHBENR_GPIOBEN;		//Activamos Reloj a Puertos A y B 
+	GPIOA->MODER |= (0x1<<10);   //Configuramos puertos como Output
+	GPIOB->MODER |= (0x1<<6);
 }
 
 void TIM3_config(void){
@@ -60,4 +77,16 @@ void TIM3_config(void){
 	TIM3->EGR |= TIM_EGR_UG;
 	// Autoreload register + Counter Enable
 	TIM3->CR1 |= TIM_CR1_ARPE | TIM_CR1_CEN;
+}
+
+void USART3_SENDchar(uint8_t c){
+	while(!(USART3->ISR & USART_ISR_TC));
+	USART3->TDR = c;
+}
+
+void USART3_SENDSTR(char *string){
+	while(*string){
+		USART3_SENDchar(*string);
+		string++;
+	}
 }

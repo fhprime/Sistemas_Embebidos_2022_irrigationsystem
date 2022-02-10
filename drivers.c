@@ -49,7 +49,7 @@ void UART3_config(void){
 	GPIOB->AFR[1] |= (0x7<<0); 									//Puerto A2 TX
 	GPIOB->AFR[1] |= (0x7<<4);									//Puerto A3 RX
 	
-	USART3->BRR = 3333;         									//
+	USART3->BRR = 278;         									//
 	USART3->CR1 |= USART_CR1_RE | USART_CR1_TE; //Habilito recepcion y transmision de datos
 	USART3->CR1 |= USART_CR1_UE;								//Habilito USART3
 	USART3->CR1 |= USART_CR1_RXNEIE;						//Habilito receptor de interrupciones
@@ -61,8 +61,10 @@ void GPIO_config(void){
 	//PB3  RELE 2
 	//PB5  Bomba 
 	RCC->AHBENR |= RCC_AHBENR_GPIOAEN + RCC_AHBENR_GPIOBEN;		//Activamos Reloj a Puertos A y B 
-	GPIOA->MODER |= (0x1<<10);   //Configuramos puertos como Output
-	GPIOB->MODER |= (0x1<<6);
+	GPIOA->MODER |= (0x1<<20);   //Configuramos puertos como Output
+	GPIOB->MODER |= (0x1<<6) + (0x1<<10);
+	GPIOB->MODER &= ~(0x1<<7);
+
 }
 
 void TIM3_config(void){
@@ -87,6 +89,34 @@ void USART3_SENDchar(uint8_t c){
 void USART3_SENDSTR(char *string){
 	while(*string){
 		USART3_SENDchar(*string);
+		string++;
+	}
+}
+
+void UART2_config(void){
+	RCC->AHBENR |= RCC_AHBENR_GPIOAEN;					//Habilito reloj a GPIOA
+	RCC->APB1ENR |= RCC_APB1ENR_USART2EN;				//Habilito reloj a USART2
+	
+	GPIOA->MODER |= (0x2<<4)| (0x2<<6);					//Configuro puerto A2 y A3 
+	GPIOA->AFR[0] |= (0x7<<8); 									//Puerto A2 TX
+	GPIOA->AFR[0] |= (0x7<<12);									//Puerto A3 RX
+	
+	USART2->BRR = 278;         									//(64MHz/2)/115200= 277,77
+	USART2->CR1 |= USART_CR1_RE | USART_CR1_TE; //Habilito recepcion y transmision de datos
+	USART2->CR1 |= USART_CR1_UE;								//Habilito USART2
+	USART2->CR1 |= USART_CR1_RXNEIE;						//Habilito receptor de interrupciones
+	NVIC_EnableIRQ(USART2_IRQn);                //Habilito NVIC para interrupcion al USART2
+}
+
+//Funcion para enviar un caracter 
+void USART2_SENDchar(uint8_t c){
+	while(!(USART2->ISR & USART_ISR_TC));
+	USART2->TDR = c;
+}
+//Funcion para enviar un string
+void USART2_SENDSTR(char *string){
+	while(*string){
+		USART2_SENDchar(*string);
 		string++;
 	}
 }

@@ -67,6 +67,8 @@ int main(void){
 		if(flag_ready){
 			USART2_SENDSTR(p1);
 			flag_ready = 0;
+			prueba = 0;
+			n=0;
 		}
 	}
 }
@@ -86,15 +88,20 @@ void ADC1_2_IRQHandler(void){
 void USART3_IRQHandler(void){
 	if(USART3->ISR & USART_ISR_RXNE){
 		info1= USART3->RDR;
-		if(info1 != '\r'){
+		if(info1 != '\r'){	
 			buffer1[n] = USART3->RDR;
-			n++;
+				if(buffer1[n] == '\n'){
+				n++;
+				buffer1[n] = '\r';
+				n++;
+				buffer1[n] = '\n';
+				}
+				n++;
 		} 
 		else{
 			buffer1[n] = '\r';
 			buffer1[n+1] = '\n';
 			buffer1[n+2] = '\0';
-			n=0;
 			flag_ready = 1;
 			prueba++;
 		}

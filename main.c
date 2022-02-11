@@ -10,13 +10,16 @@ Sistema de Irregacion con integracion de servidor web
 float sensor_humedad_1;
 float sensor_humedad_2;
 uint8_t info;
+uint8_t info1;
 uint8_t flag_ready;
-uint8_t n = 0;
+int n = 0;
+int n1 = 0;
 char * p1;
 char * p2;
-char buffer1[1000];
-char buffer2[1000];
+char buffer1[3000];
+char buffer2[100];
 uint8_t command_ready = 0;
+uint8_t prueba = 0;
 /************************************************************/
 
 int main(void){
@@ -57,12 +60,13 @@ int main(void){
 		if(buffer[0] == 0x36){	//Apagar Bomba
 			GPIOB->ODR &= ~(0x1<<5);
 		}*/
-		if(command_ready){
-			USART3_SENDSTR(p2);
+		if(command_ready){ //Comando AT LISTO 
+			USART3_SENDSTR(p2); //Envio Dato Recibido a modulo WIFI
+			command_ready = 0;   //COMMAND estado anterior 
 		}
 		if(flag_ready){
 			USART2_SENDSTR(p1);
-		
+			flag_ready = 0;
 		}
 	}
 }
@@ -81,16 +85,18 @@ void ADC1_2_IRQHandler(void){
 
 void USART3_IRQHandler(void){
 	if(USART3->ISR & USART_ISR_RXNE){
-		info= USART3->RDR;
-		if(info != '\r'){
+		info1= USART3->RDR;
+		if(info1 != '\r'){
 			buffer1[n] = USART3->RDR;
 			n++;
-			flag_ready = 0;
 		} 
 		else{
-			buffer1[n] = '\0';
+			buffer1[n] = '\r';
+			buffer1[n+1] = '\n';
+			buffer1[n+2] = '\0';
 			n=0;
 			flag_ready = 1;
+			prueba++;
 		}
 	}
 }
@@ -99,13 +105,15 @@ void USART2_IRQHandler(void){
 	if(USART2->ISR & USART_ISR_RXNE){
 		info= USART2->RDR;
 		if(info != '\r'){
-			buffer2[n] = USART2->RDR;
-			n++;
-			command_ready = 0;
+			buffer2[n1] = USART2->RDR;
+			n1++;
 		} else{
-			buffer2[n] = '\0';
+			
+			buffer2[n1] = '\r';
+			buffer2[n1+1] = '\n';
+			buffer2[n1+2] = '\0';
 			command_ready=1;
-			n=0;
+			n1=0;
 		}
 	}
 }

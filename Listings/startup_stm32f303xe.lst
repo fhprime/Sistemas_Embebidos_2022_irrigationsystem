@@ -335,7 +335,7 @@ ARM Macro Assembler    Page 6
   187 00000000                 IMPORT           SystemInit
   188 00000000                 IMPORT           __main
   189 00000000         
-  190 00000000 4809            LDR              R0, =SystemInit
+  190 00000000 4809    1       LDR              R0, =SystemInit
   191 00000002 4780            BLX              R0
   192 00000004 4809            LDR              R0, =__main
   193 00000006 4700            BX               R0
@@ -810,6 +810,14 @@ Symbol: __Vectors_End
 ARM Macro Assembler    Page 1 Alphabetic symbol ordering
 Relocatable symbols
 
+ 00000000
+
+Symbol: 
+   Definitions
+      None
+   Uses
+      None
+Warning:  undefinedComment:  unused
 .text 00000000
 
 Symbol: .text
@@ -861,6 +869,12 @@ Symbol: CAN_RX1_IRQHandler
       At line 338 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
       At line 113 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
       At line 263 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 
 CAN_SCE_IRQHandler 0000001A
@@ -869,12 +883,6 @@ Symbol: CAN_SCE_IRQHandler
    Definitions
       At line 339 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
-
-
-
-ARM Macro Assembler    Page 2 Alphabetic symbol ordering
-Relocatable symbols
-
       At line 114 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
       At line 264 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 
@@ -926,6 +934,12 @@ Symbol: DMA1_Channel2_IRQHandler
 DMA1_Channel3_IRQHandler 0000001A
 
 Symbol: DMA1_Channel3_IRQHandler
+
+
+
+ARM Macro Assembler    Page 3 Alphabetic symbol ordering
+Relocatable symbols
+
    Definitions
       At line 330 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
@@ -933,12 +947,6 @@ Symbol: DMA1_Channel3_IRQHandler
       At line 255 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 
 DMA1_Channel4_IRQHandler 0000001A
-
-
-
-
-ARM Macro Assembler    Page 3 Alphabetic symbol ordering
-Relocatable symbols
 
 Symbol: DMA1_Channel4_IRQHandler
    Definitions
@@ -992,6 +1000,12 @@ Symbol: DMA2_Channel2_IRQHandler
       At line 149 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
       At line 297 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 
+
+
+ARM Macro Assembler    Page 4 Alphabetic symbol ordering
+Relocatable symbols
+
+
 DMA2_Channel3_IRQHandler 0000001A
 
 Symbol: DMA2_Channel3_IRQHandler
@@ -999,12 +1013,6 @@ Symbol: DMA2_Channel3_IRQHandler
       At line 373 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
       At line 150 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
-
-
-
-ARM Macro Assembler    Page 4 Alphabetic symbol ordering
-Relocatable symbols
-
       At line 298 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 
 DMA2_Channel4_IRQHandler 0000001A
@@ -1056,6 +1064,12 @@ EXTI15_10_IRQHandler 0000001A
 Symbol: EXTI15_10_IRQHandler
    Definitions
       At line 357 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
+
+
+
+ARM Macro Assembler    Page 5 Alphabetic symbol ordering
+Relocatable symbols
+
    Uses
       At line 132 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
       At line 282 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
@@ -1064,12 +1078,6 @@ EXTI1_IRQHandler 0000001A
 
 Symbol: EXTI1_IRQHandler
    Definitions
-
-
-
-ARM Macro Assembler    Page 5 Alphabetic symbol ordering
-Relocatable symbols
-
       At line 324 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
       At line 99 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
@@ -1122,18 +1130,18 @@ Symbol: FLASH_IRQHandler
 
 FMC_IRQHandler 0000001A
 
+
+
+ARM Macro Assembler    Page 6 Alphabetic symbol ordering
+Relocatable symbols
+
+
 Symbol: FMC_IRQHandler
    Definitions
       At line 365 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
       At line 140 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
       At line 290 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
-
-
-
-
-ARM Macro Assembler    Page 6 Alphabetic symbol ordering
-Relocatable symbols
 
 FPU_IRQHandler 0000001A
 
@@ -1186,6 +1194,12 @@ Symbol: I2C2_EV_IRQHandler
    Definitions
       At line 350 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
+
+
+
+ARM Macro Assembler    Page 7 Alphabetic symbol ordering
+Relocatable symbols
+
       At line 125 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
       At line 275 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 
@@ -1194,12 +1208,6 @@ I2C3_ER_IRQHandler 0000001A
 Symbol: I2C3_ER_IRQHandler
    Definitions
       At line 381 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
-
-
-
-ARM Macro Assembler    Page 7 Alphabetic symbol ordering
-Relocatable symbols
-
    Uses
       At line 165 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
       At line 306 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
@@ -1251,6 +1259,12 @@ Symbol: PendSV_Handler
 
 RCC_IRQHandler 0000001A
 
+
+
+
+ARM Macro Assembler    Page 8 Alphabetic symbol ordering
+Relocatable symbols
+
 Symbol: RCC_IRQHandler
    Definitions
       At line 322 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
@@ -1259,12 +1273,6 @@ Symbol: RCC_IRQHandler
       At line 247 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 
 RTC_Alarm_IRQHandler 0000001A
-
-
-
-ARM Macro Assembler    Page 8 Alphabetic symbol ordering
-Relocatable symbols
-
 
 Symbol: RTC_Alarm_IRQHandler
    Definitions
@@ -1316,6 +1324,12 @@ Symbol: SPI3_IRQHandler
       At line 366 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
       At line 143 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
+
+
+
+ARM Macro Assembler    Page 9 Alphabetic symbol ordering
+Relocatable symbols
+
       At line 291 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 
 SPI4_IRQHandler 0000001A
@@ -1324,12 +1338,6 @@ Symbol: SPI4_IRQHandler
    Definitions
       At line 390 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
-
-
-
-ARM Macro Assembler    Page 9 Alphabetic symbol ordering
-Relocatable symbols
-
       At line 176 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
       At line 315 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 
@@ -1381,6 +1389,12 @@ Symbol: TIM1_CC_IRQHandler
 TIM1_TRG_COM_TIM17_IRQHandler 0000001A
 
 Symbol: TIM1_TRG_COM_TIM17_IRQHandler
+
+
+
+ARM Macro Assembler    Page 10 Alphabetic symbol ordering
+Relocatable symbols
+
    Definitions
       At line 343 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
@@ -1388,12 +1402,6 @@ Symbol: TIM1_TRG_COM_TIM17_IRQHandler
       At line 268 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 
 TIM1_UP_TIM16_IRQHandler 0000001A
-
-
-
-
-ARM Macro Assembler    Page 10 Alphabetic symbol ordering
-Relocatable symbols
 
 Symbol: TIM1_UP_TIM16_IRQHandler
    Definitions
@@ -1447,6 +1455,12 @@ Symbol: TIM2_IRQHandler
       At line 120 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
       At line 270 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 
+
+
+ARM Macro Assembler    Page 11 Alphabetic symbol ordering
+Relocatable symbols
+
+
 TIM3_IRQHandler 0000001A
 
 Symbol: TIM3_IRQHandler
@@ -1454,12 +1468,6 @@ Symbol: TIM3_IRQHandler
       At line 346 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
       At line 121 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
-
-
-
-ARM Macro Assembler    Page 11 Alphabetic symbol ordering
-Relocatable symbols
-
       At line 271 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 
 TIM4_IRQHandler 0000001A
@@ -1511,6 +1519,12 @@ TIM8_TRG_COM_IRQHandler 0000001A
 
 Symbol: TIM8_TRG_COM_IRQHandler
    Definitions
+
+
+
+ARM Macro Assembler    Page 12 Alphabetic symbol ordering
+Relocatable symbols
+
       At line 362 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
       At line 137 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
@@ -1519,12 +1533,6 @@ Symbol: TIM8_TRG_COM_IRQHandler
 TIM8_UP_IRQHandler 0000001A
 
 Symbol: TIM8_UP_IRQHandler
-
-
-
-ARM Macro Assembler    Page 12 Alphabetic symbol ordering
-Relocatable symbols
-
    Definitions
       At line 361 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
@@ -1576,6 +1584,12 @@ Symbol: USART3_IRQHandler
       At line 131 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
       At line 281 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 
+
+
+
+ARM Macro Assembler    Page 13 Alphabetic symbol ordering
+Relocatable symbols
+
 USBWakeUp_IRQHandler 0000001A
 
 Symbol: USBWakeUp_IRQHandler
@@ -1584,12 +1598,6 @@ Symbol: USBWakeUp_IRQHandler
    Uses
       At line 134 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
       At line 284 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
-
-
-
-ARM Macro Assembler    Page 13 Alphabetic symbol ordering
-Relocatable symbols
-
 
 USBWakeUp_RMP_IRQHandler 0000001A
 
@@ -1641,6 +1649,12 @@ UsageFault_Handler 00000010
 Symbol: UsageFault_Handler
    Definitions
       At line 218 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
+
+
+
+ARM Macro Assembler    Page 14 Alphabetic symbol ordering
+Relocatable symbols
+
    Uses
       At line 80 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
       At line 219 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
@@ -1649,12 +1663,6 @@ WWDG_IRQHandler 0000001A
 
 Symbol: WWDG_IRQHandler
    Definitions
-
-
-
-ARM Macro Assembler    Page 14 Alphabetic symbol ordering
-Relocatable symbols
-
       At line 317 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
    Uses
       At line 92 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
@@ -1668,7 +1676,7 @@ Symbol: __user_initial_stackheap
    Uses
       At line 410 in file RTE\Device\STM32F303RETx\startup_stm32f303xe.s
 Comment: __user_initial_stackheap used once
-87 symbols
+88 symbols
 
 
 
@@ -1733,4 +1741,4 @@ Symbol: __use_two_region_memory
       None
 Comment: __use_two_region_memory unused
 3 symbols
-442 symbols in table
+443 symbols in table

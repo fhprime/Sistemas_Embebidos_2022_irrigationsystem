@@ -20,6 +20,7 @@ char buffer1[3000];
 char buffer2[100];
 uint8_t command_ready = 0;
 uint8_t prueba = 0;
+
 /************************************************************/
 
 int main(void){
@@ -42,31 +43,29 @@ int main(void){
 	//PA3 UART2 RX
 	
 	while(1){
-	/*	if(buffer[0] == 0x31){  //Encender Electrovalvula 1 
-			GPIOA->ODR |= (0x1<<10);
-		}
-		if(buffer[0] == 0x32){  //Apagar Electrovalvula 1
-			GPIOA->ODR &= ~(0x1<<10);
-		}
-		if(buffer[0] ==  0x33){	//Encender Electrovalvula 2
-			GPIOB->ODR |= (0x1<<3);
-		}
-		if(buffer[0] == 0x34){ 	//Apagar Electrovalvula 2 
-			GPIOB->ODR &= ~(0x1<<3);
-		}
-		if(buffer[0] == 0x35){	//Encender Bomba 
-			GPIOB->ODR |= (0x1<<5);
-		}
-		if(buffer[0] == 0x36){	//Apagar Bomba
-			GPIOB->ODR &= ~(0x1<<5);
-		}*/
 		if(command_ready){ //Comando AT LISTO 
 			USART3_SENDSTR(p2); //Envio Dato Recibido a modulo WIFI
 			command_ready = 0;   //COMMAND estado anterior 
 		}
-		if(flag_ready){
-			USART2_SENDSTR(p1);
+		if(flag_ready){  //Datos del Modulo Wifi listos 
+			USART2_SENDSTR(p1);	//Imprimo en consola
 			flag_ready = 0;
+			//Accionamos electrovalvulas acorde a dato recibido 
+			if(buffer1[30]== '&' || buffer1[31]=='&' || buffer1[32]=='&' || buffer1[42] == '&'){
+				if(buffer1[31] == '1'|| buffer1[32] == '1' ||buffer1[33]=='1'|| buffer1[43]=='1'){
+						GPIOB->ODR &= ~(0x1<<3);
+				}
+				if(buffer1[31] == '2'|| buffer1[32] == '2' ||buffer1[33]=='2' || buffer1[43]=='2' ){
+						GPIOB->ODR |= (0x1<<3);
+				}
+				if(buffer1[31] == '5'|| buffer1[32] == '5' ||buffer1[33]=='5' || buffer1[43]=='5'){
+						GPIOA->ODR &= ~(0x1<<10);
+				}
+				if(buffer1[31] == '6'|| buffer1[32] == '6' ||buffer1[33]=='6' || buffer1[43]=='6'){
+						GPIOA->ODR |= (0x1<<10);
+				}
+				
+			}
 			prueba = 0;
 			n=0;
 		}

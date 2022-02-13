@@ -45,11 +45,11 @@ void UART3_config(void){
 	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;					//Habilito reloj a GPIOB
 	RCC->APB1ENR |= RCC_APB1ENR_USART3EN;				//Habilito reloj a USART3
 	
-	GPIOB->MODER |= (0x2<<16)| (0x2<<18);					//Configuro puerto A2 y A3 
-	GPIOB->AFR[1] |= (0x7<<0); 									//Puerto A2 TX
-	GPIOB->AFR[1] |= (0x7<<4);									//Puerto A3 RX
+	GPIOB->MODER |= (0x2<<16)| (0x2<<18);					//Configuro puerto PB8 y PB8 
+	GPIOB->AFR[1] |= (0x7<<0); 									//Puerto PB8 TX
+	GPIOB->AFR[1] |= (0x7<<4);									//Puerto PB9 RX
 	
-	USART3->BRR = 278;         									//
+	USART3->BRR = 278;         									//(64MHz/2)/115200= 277,77
 	USART3->CR1 |= USART_CR1_RE | USART_CR1_TE; //Habilito recepcion y transmision de datos
 	USART3->CR1 |= USART_CR1_UE;								//Habilito USART3
 	USART3->CR1 |= USART_CR1_RXNEIE;						//Habilito receptor de interrupciones

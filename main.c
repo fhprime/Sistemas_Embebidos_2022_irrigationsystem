@@ -34,7 +34,7 @@ int main(void){
 	GPIO_config();				//Configuramos Puertos para Bomba de agua y electrovalvulas
 	//PA10 RELE 1
 	//PB3  RELE 2
-	//PB5  Bomba  
+	//PB5  Bomba 
 	//PC1 Analog Measure Humidity sensor
 	//PA0 Analog Measure Humidity sensor
 	//PB8 UART3 RX
